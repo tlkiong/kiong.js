@@ -120,7 +120,7 @@
       var queryStrings = [];
 
       if(url.split('?')[1]) {
-        url.substring(url.indexOf('?') + 1).split('&').map(function(currentE) {
+        queryStrings = url.substring(url.indexOf('?') + 1).split('&').map(function(currentE) {
           return {
             qStringKey: currentE.split('=')[0],
             qStringVal: currentE.split('=')[1]
