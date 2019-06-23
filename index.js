@@ -1,3 +1,4 @@
+// Code here is taken directly from: https://github.com/tlkiong/kiong.js/blob/master/index.js
 (function() {
   'use strict';
 
@@ -116,12 +117,16 @@
     }
 
     function getAllQueryStrings(url) {
-      var queryStrings = url.substring(url.indexOf('?') + 1).split('&').map(function(currentE) {
-        return {
-          qStringKey: currentE.split('=')[0],
-          qStringVal: currentE.split('=')[1]
-        }
-      });
+      var queryStrings = [];
+
+      if(url.split('?')[1]) {
+        url.substring(url.indexOf('?') + 1).split('&').map(function(currentE) {
+          return {
+            qStringKey: currentE.split('=')[0],
+            qStringVal: currentE.split('=')[1]
+          }
+        });
+      }
 
       return {
         urlOriginal: url,
