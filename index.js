@@ -90,8 +90,8 @@
     }
 
     function isObjNotPresentInArr(arr1, val, comparisonKey) {
-      let isNotPresent = true;
-      for(let i=0, j=arr1.length; i<j; i++) {
+      var isNotPresent = true;
+      for(var i=0, j=arr1.length; i<j; i++) {
         if(arr1[i][comparisonKey] === val[comparisonKey]) {
           isNotPresent = false;
           break;
@@ -102,9 +102,9 @@
     }
 
     function convertObjToArray(obj, propNameForKey){
-      let arr = [];
+      var arr = [];
 
-      for(let k in obj) {
+      for(var k in obj) {
         if(obj.hasOwnProperty(k)) {
           if(getObjType(propNameForKey) === 'string' && isObjPresent(propNameForKey)){
             obj[k][propNameForKey] = k;
@@ -511,24 +511,51 @@
       }
     }
 
-    function getMonthNameFromDateObj(number) {
+    function getMonthNameFromDateObj(number, isShortName) {
       if(number >= 0 && number <= 11) {
-        var monthNames = [
-          'January',
-          'February',
-          'March',
-          'April',
-          'May',
-          'June',
-          'July',
-          'August',
-          'September',
-          'October',
-          'November',
-          'December'
-        ];
+        var monthNames = [{
+            name: 'january',
+            shortName: 'jan'
+          }, {
+            name: 'february',
+            shortName: 'feb'
+          }, {
+            name: 'march',
+            shortName: 'mac'
+          }, {
+            name: 'april',
+            shortName: 'apr'
+          }, {
+            name: 'may',
+            shortName: 'may'
+          }, {
+            name: 'june',
+            shortName: 'jun'
+          }, {
+            name: 'july',
+            shortName: 'jul'
+          }, {
+            name: 'august',
+            shortName: 'aug'
+          }, {
+            name: 'september',
+            shortName: 'sept'
+          }, {
+            name: 'october',
+            shortName: 'oct'
+          }, {
+            name: 'november',
+            shortName: 'nov'
+          }, {
+            name: 'december',
+            shortName: 'dec'
+          }];
         
-        return monthNames[number];
+        if(isShortName) {
+          return monthNames[number].shortName;  
+        } else {
+          return monthNames[number].name;
+        }
       }
     }
 
