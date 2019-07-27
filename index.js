@@ -23,7 +23,8 @@
     convertObjToArray: convertObjToArray,
     isObjNotPresentInArr: isObjNotPresentInArr,
     isMobileDevice: isMobileDevice,
-    getRandomFromRange: getRandomFromRange
+    getRandomFromRange: getRandomFromRange,
+    recordAudio: recordAudio
   };
 
   /* ======================================== Var ==================================================== */
@@ -33,7 +34,50 @@
   /* ======================================== Services =============================================== */
 
   /* ======================================== Public Methods ========================================= */
-  
+    function recordAudio() {
+      return new Promise(function(resolved, rejected) {
+        navigator.mediaDevices.getUserMedia({ audio: true })
+          .then(function(stream) {
+            var mediaRecorder = new MediaRecorder(stream);
+            var audioChunks = [];
+
+            mediaRecorder.addEventListener('dataavailable', function(evnt) {
+              audioChunks.push(evnt.data);
+            });
+
+            var start = function() {
+              mediaRecorder.start();
+            };
+
+            var stop = function() {
+              return new Promise(function(resolved, rejected) {
+                mediaRecorder.addEventListener('stop', function() {
+                  var audioBlob = new Blob(audioChunks);
+                  var audioUrl = URL.createObjectURL(audioBlob);
+
+                  resolved({
+                    audioBlob: audioBlob,
+                    audioUrl: audioUrl
+                  });
+                });
+
+                mediaRecorder.stop();
+              });
+            };
+
+            var play = function(audioUrl) {
+              (new Audio(audioUrl)).play();
+            }
+
+            resolved({
+              start: start,
+              stop: stop,
+              play: play
+            });
+          });
+      });
+    }
+
     /**
      * Code taken from: https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range#answer-1527834
      * Returns a random number between min (inclusive) and max (exclusive)
