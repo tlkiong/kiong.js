@@ -56,6 +56,7 @@
                   var audioUrl = URL.createObjectURL(audioBlob);
 
                   resolved({
+                    audioRaw: audioChunks,
                     audioBlob: audioBlob,
                     audioUrl: audioUrl
                   });
