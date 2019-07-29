@@ -5,16 +5,16 @@
   window.kiong = {
     init: init,
     getMonthNameFromDateObj: getMonthNameFromDateObj,
-    getDateInDDMMMMYYYY: getDateInDDMMMMYYYY,
-    getMonthNameFromEpochDate: getMonthNameFromEpochDate,
-    getDayInEpoch: getDayInEpoch,
+    // getDateInDDMMMMYYYY: getDateInDDMMMMYYYY,
+    // getMonthNameFromEpochDate: getMonthNameFromEpochDate,
+    // getDayInEpoch: getDayInEpoch,
     isObjPresent: isObjPresent,
     getObjType: getObjType,
     getUUID: getUUID,
     isEpochTimeInMs: isEpochTimeInMs,
     getValInNumber: getValInNumber,
     flattenArray: flattenArray,
-    getRandomChameleonColorPair: getRandomChameleonColorPair,
+    // getRandomChameleonColorPair: getRandomChameleonColorPair,
     removeFromLocalStorage: removeFromLocalStorage,
     getFromLocalStorage: getFromLocalStorage,
     saveToLocalStorage: saveToLocalStorage,
@@ -28,8 +28,6 @@
   };
 
   /* ======================================== Var ==================================================== */
-    var spinner; // This is for spin.js
-    var spinnerList = [];
 
   /* ======================================== Services =============================================== */
 
@@ -294,40 +292,40 @@
       return result;
     }
 
-    function getRandomChameleonColorPair() {
-      // This colour pair is taken from => https://camo.githubusercontent.com/747d1a53ed34124c5ab7fb9007f4ccda8da37398/687474703a2f2f692e696d6775722e636f6d2f776b4747576b4e2e706e67
-      // From the repo at https://github.com/ViccAlexander/Chameleon
-      var colourPair = [
-        ['#E74C3C', '#C0392B'], // Flat red
-        ['#E67E22', '#D35400'], // Flat orange
-        ['#FFCD02', '#FFA800'], // Flat yellow
-        ['#f0deb4', '#d5c295'], // Flat sand
-        ['#34495e', '#2c3e50'], // Flat navy blue
-        ['#2b2b2b', '#262626'], // Flat black
-        ['#9b59b6', '#8e44ad'], // Flat magenta
-        ['#3a6f81', '#356272'], // Flat teal
-        ['#3498db', '#2980b9'], // Flat sky blue
-        ['#2ecc71', '#27ae60'], // Flat green
-        ['#1abc9c', '#16a085'], // Flat mint
-        ['#ecf0f1', '#bdc3c7'], // Flat white
-        ['#95a5a6', '#7f8c8d'], // Flat grey
-        ['#345f41', '#2d5036'], // Flat forest green
-        ['#745ec5', '#5b48a2'], // Flat purple
-        ['#5e4534', '#503b2c'], // Flat brown
-        ['#5e345e', '#4f2b4f'], // Flat plum
-        ['#ef717a', '#d95459'], // Flat watermelon
-        ['#a5c63b', '#8eb021'], // Flat lime
-        ['#f47cc3', '#d45c9e'], // Flat pink
-        ['#79302a', '#662621'], // Flat maroon
-        ['#a38671', '#8e725e'], // Flat coffee
-        ['#b8c9f1', '#99abd5'], // Flat powder blue
-        ['#5065a1', '#394c81']  // Flat blue
-      ];
+    // function getRandomChameleonColorPair() {
+    //   // This colour pair is taken from => https://camo.githubusercontent.com/747d1a53ed34124c5ab7fb9007f4ccda8da37398/687474703a2f2f692e696d6775722e636f6d2f776b4747576b4e2e706e67
+    //   // From the repo at https://github.com/ViccAlexander/Chameleon
+    //   var colourPair = [
+    //     ['#E74C3C', '#C0392B'], // Flat red
+    //     ['#E67E22', '#D35400'], // Flat orange
+    //     ['#FFCD02', '#FFA800'], // Flat yellow
+    //     ['#f0deb4', '#d5c295'], // Flat sand
+    //     ['#34495e', '#2c3e50'], // Flat navy blue
+    //     ['#2b2b2b', '#262626'], // Flat black
+    //     ['#9b59b6', '#8e44ad'], // Flat magenta
+    //     ['#3a6f81', '#356272'], // Flat teal
+    //     ['#3498db', '#2980b9'], // Flat sky blue
+    //     ['#2ecc71', '#27ae60'], // Flat green
+    //     ['#1abc9c', '#16a085'], // Flat mint
+    //     ['#ecf0f1', '#bdc3c7'], // Flat white
+    //     ['#95a5a6', '#7f8c8d'], // Flat grey
+    //     ['#345f41', '#2d5036'], // Flat forest green
+    //     ['#745ec5', '#5b48a2'], // Flat purple
+    //     ['#5e4534', '#503b2c'], // Flat brown
+    //     ['#5e345e', '#4f2b4f'], // Flat plum
+    //     ['#ef717a', '#d95459'], // Flat watermelon
+    //     ['#a5c63b', '#8eb021'], // Flat lime
+    //     ['#f47cc3', '#d45c9e'], // Flat pink
+    //     ['#79302a', '#662621'], // Flat maroon
+    //     ['#a38671', '#8e725e'], // Flat coffee
+    //     ['#b8c9f1', '#99abd5'], // Flat powder blue
+    //     ['#5065a1', '#394c81']  // Flat blue
+    //   ];
 
-      colourPair = flattenArray(colourPair);
+    //   colourPair = flattenArray(colourPair);
 
-      return colourPair[Math.floor(Math.random() * (colourPair.length - 1))];
-    }
+    //   return colourPair[Math.floor(Math.random() * (colourPair.length - 1))];
+    // }
 
     // This function will return the following:
     //      - 111 => return 100
@@ -522,39 +520,39 @@
       }
     }
 
-    function getDayInEpoch(validJsDate) {
-      if(!isObjPresent(validJsDate)) {
-        validJsDate = Date.now();
-      }
+    // function getDayInEpoch(validJsDate) {
+    //   if(!isObjPresent(validJsDate)) {
+    //     validJsDate = Date.now();
+    //   }
 
-      var d = new Date(validJsDate);
-      if(d === 'Invalid Date') {
-        return d;
-      }
+    //   var d = new Date(validJsDate);
+    //   if(d === 'Invalid Date') {
+    //     return d;
+    //   }
 
-      return (new Date(d.getFullYear(), d.getMonth(), d.getDate())).getTime();
-    }
+    //   return (new Date(d.getFullYear(), d.getMonth(), d.getDate())).getTime();
+    // }
 
-    function getMonthNameFromEpochDate(dateTimeInEpoch) {
-      try {
-        var month = new Date(Number(dateTimeInEpoch)).getMonth();
-        getMonthNameFromDateObj(month);
-      } catch (e) {
-        throw new Error('date time is not in number');
-      }
-    }
+    // function getMonthNameFromEpochDate(dateTimeInEpoch) {
+    //   try {
+    //     var month = new Date(Number(dateTimeInEpoch)).getMonth();
+    //     getMonthNameFromDateObj(month);
+    //   } catch (e) {
+    //     throw new Error('date time is not in number');
+    //   }
+    // }
 
-    function getDateInDDMMMMYYYY(dateTimeInEpoch) { // Will return dd MMMM YYYY : 01 Jan 2012
-      try {
-        var dateTimeInNumber = Number(dateTimeInEpoch);
-        var month = new Date(Number(dateTimeInEpoch)).getMonth();
-        var monthInString = getMonthNameFromDateObj(month);
+    // function getDateInDDMMMMYYYY(dateTimeInEpoch) { // Will return dd MMMM YYYY : 01 Jan 2012
+    //   try {
+    //     var dateTimeInNumber = Number(dateTimeInEpoch);
+    //     var month = new Date(Number(dateTimeInEpoch)).getMonth();
+    //     var monthInString = getMonthNameFromDateObj(month);
 
-        return new Date(Number(dateTimeInEpoch)).getDate() + ' ' + monthInString + ' ' + new Date(Number(dateTimeInEpoch)).getFullYear();
-      } catch (e) {
-        throw new Error('date time is not in number');
-      }
-    }
+    //     return new Date(Number(dateTimeInEpoch)).getDate() + ' ' + monthInString + ' ' + new Date(Number(dateTimeInEpoch)).getFullYear();
+    //   } catch (e) {
+    //     throw new Error('date time is not in number');
+    //   }
+    // }
 
     function getMonthNameFromDateObj(number, isShortName) {
       if(number >= 0 && number <= 11) {
