@@ -73,6 +73,8 @@
               stop: stop,
               play: play
             });
+          }, function(err) {
+            rejected(err);
           });
       });
     }
