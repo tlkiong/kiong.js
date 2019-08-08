@@ -162,21 +162,31 @@
     }
 
     function getAllQueryStrings(url) {
-      var queryStrings = [];
+      var queryStringsAsList = [];
+      var queryStringAsObj = {};
 
       if(url.split('?')[1]) {
-        queryStrings = url.substring(url.indexOf('?') + 1).split('&').map(function(currentE) {
-          return {
-            qStringKey: currentE.split('=')[0],
-            qStringVal: currentE.split('=')[1]
-          }
-        });
+        var queryStringKey = '';
+        var queryStringVal = '';
+
+        url.substring(url.indexOf('?') + 1).split('&').forEach(function(currentE) {
+          queryStringKey = currentE.split('=')[0];
+          queryStringVal = currentE.split('=')[1];
+
+          queryStringsAsList.push({
+            key: queryStringKey,
+            val: queryStringVal
+          });
+
+          queryStringAsObj[queryStringKey] = queryStringVal
+        })
       }
 
       return {
         urlOriginal: url,
         urlWithoutQueryStrings: url.split('?')[0],
-        queryStrings: queryStrings
+        queryStringsAsList: queryStringsAsList,
+        queryStringAsObj: queryStringAsObj
       }
     }
 
