@@ -28,55 +28,67 @@
   };
 
   /* ======================================== Var ==================================================== */
-
+  var userPermissions = {
+    audio: false
+  }
   /* ======================================== Services =============================================== */
 
   /* ======================================== Public Methods ========================================= */
     function recordAudio() {
       return new Promise(function(resolved, rejected) {
-        navigator.mediaDevices.getUserMedia({ audio: true })
-          .then(function(stream) {
-            var mediaRecorder = new MediaRecorder(stream);
-            var audioChunks = [];
-
-            mediaRecorder.addEventListener('dataavailable', function(evnt) {
-              audioChunks.push(evnt.data);
+        if(!!userPermissions.audio) {
+          resolved(getAudioObj());
+        } else {
+          navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(function(stream) {
+              userPermissions.audio = true;
+              resolved(getAudioObj());
+            }, function(err) {
+              userPermissions.audio = false;
+              rejected(err);
             });
+        }
+      });
+    }
 
-            var start = function() {
-              mediaRecorder.start();
-            };
+    function getAudioObj() {
+      var mediaRecorder = new MediaRecorder(stream);
+      var audioChunks = [];
 
-            var stop = function() {
-              return new Promise(function(resolved, rejected) {
-                mediaRecorder.addEventListener('stop', function() {
-                  var audioBlob = new Blob(audioChunks);
-                  var audioUrl = URL.createObjectURL(audioBlob);
+      mediaRecorder.addEventListener('dataavailable', function(evnt) {
+        audioChunks.push(evnt.data);
+      });
 
-                  resolved({
-                    audioRaw: audioChunks,
-                    audioBlob: audioBlob,
-                    audioUrl: audioUrl
-                  });
-                });
+      var start = function() {
+        mediaRecorder.start();
+      };
 
-                mediaRecorder.stop();
-              });
-            };
-
-            var play = function(audioUrl) {
-              (new Audio(audioUrl)).play();
-            }
+      var stop = function() {
+        return new Promise(function(resolved, rejected) {
+          mediaRecorder.addEventListener('stop', function() {
+            var audioBlob = new Blob(audioChunks);
+            var audioUrl = URL.createObjectURL(audioBlob);
 
             resolved({
-              start: start,
-              stop: stop,
-              play: play
+              audioRaw: audioChunks,
+              audioBlob: audioBlob,
+              audioUrl: audioUrl
             });
-          }, function(err) {
-            rejected(err);
           });
-      });
+
+          mediaRecorder.stop();
+        });
+      };
+
+      var play = function(audioUrl) {
+        (new Audio(audioUrl)).play();
+      }
+
+      return {
+        start: start,
+        stop: stop,
+        play: play
+      }
     }
 
     /**
