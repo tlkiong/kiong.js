@@ -49,18 +49,23 @@
 
             var stop = function() {
               return new Promise(function(resolved, rejected) {
-                mediaRecorder.addEventListener('stop', function() {
-                  var audioBlob = new Blob(audioChunks);
-                  var audioUrl = URL.createObjectURL(audioBlob);
+                mediaRecorder.onstop = function() {
+                  var newAudioChunks = [];
 
+                  audioChunks.forEach(function(audioChunk) {
+                    newAudioChunks.push(audioChunk);
+                  });
                   audioChunks.length = 0;
+
+                  var audioBlob = new Blob(newAudioChunks);
+                  var audioUrl = URL.createObjectURL(audioBlob);
 
                   resolved({
                     audioRaw: audioChunks,
                     audioBlob: audioBlob,
                     audioUrl: audioUrl
                   });
-                });
+                };
 
                 mediaRecorder.stop();
               });
