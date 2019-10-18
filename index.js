@@ -24,7 +24,8 @@
     isObjNotPresentInArr: isObjNotPresentInArr,
     isMobileDevice: isMobileDevice,
     getRandomFromRange: getRandomFromRange,
-    recordAudio: recordAudio
+    recordAudio: recordAudio,
+    thousandSeparator: thousandSeparator
   };
 
   /* ======================================== Var ==================================================== */
@@ -32,6 +33,13 @@
   /* ======================================== Services =============================================== */
 
   /* ======================================== Public Methods ========================================= */
+    // Code taken directly from: https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript#answer-2901298
+    function thousandSeparator(number) {
+      var parts = number.toString().split('.');
+      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      return parts.join('.');
+    }
+
     function recordAudio() {
       return new Promise(function(resolved, rejected) {
         navigator.mediaDevices.getUserMedia({ audio: true })
