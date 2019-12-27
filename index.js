@@ -426,7 +426,8 @@
         '[object MouseEvent]': 'mouse_event',
         '[object KeyboardEvent]': 'keyboard_event',
         '[object HTMLElement]': 'htmlElement',
-        '[object Text]': 'objectText'
+        '[object Text]': 'objectText',
+        '[object Map]': 'map'
       }
 
       var objType = prop[Object.prototype.toString.call(object)];
@@ -544,6 +545,8 @@
       } else if (type === 'NaN') {
         return false;
       } else if (type === 'objectText') {
+        return true;
+      } else if (type === 'map') {
         return true;
       } else {
         throw new Error(obj + ' is not an array, string, boolean or number. This fn only work with those for now');
