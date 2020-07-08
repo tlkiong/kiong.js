@@ -4,6 +4,7 @@
 
   window.kiong = {
     init: init,
+    removeTimezoneFromDate: removeTimezoneFromDate,
     getMonthNameFromDateObj: getMonthNameFromDateObj,
     // getDateInDDMMMMYYYY: getDateInDDMMMMYYYY,
     // getMonthNameFromEpochDate: getMonthNameFromEpochDate,
@@ -33,6 +34,14 @@
   /* ======================================== Services =============================================== */
 
   /* ======================================== Public Methods ========================================= */
+    function removeTimezoneFromDate(dateObj) {
+      if (getObjType(dateObj) !== 'date') {
+        throw "param must be a date object";
+      }
+
+      return new Date(Date.UTC(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate()) - dateObj.getTimezoneOffset())
+    }
+  
     // Code taken directly from: https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript#answer-2901298
     function thousandSeparator(number) {
       var parts = number.toString().split('.');
