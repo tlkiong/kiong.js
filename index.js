@@ -35,8 +35,12 @@
 
   /* ======================================== Public Methods ========================================= */
     function removeTimezoneFromDate(dateObj) {
-      if (getObjType(dateObj) !== 'date') {
-        throw "param must be a date object";
+      if (getObjType(dateObj) === 'string') {
+        dateObj = new Date(dateObj);
+      }
+
+      if (getObjType(dateObj) !== 'date' || isNaN(dateObj.getTime())) {
+        throw "param must be a date object. You passed in: " + dateObj;
       }
 
       return new Date(Date.UTC(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate()) - dateObj.getTimezoneOffset())
